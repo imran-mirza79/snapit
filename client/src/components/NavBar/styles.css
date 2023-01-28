@@ -1,0 +1,16 @@
+.image {
+	/* margin: 30px 0 !important; */
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-left: 15px !important;
+}
+
+.appBar {
+	border-radius: 15px !important;
+	margin: 30px 0 !important;
+	display: flex !important;
+	flex-direction: column !important;
+	justify-content: center !important;
+	align-items: center !important;
+	background-color: black !important;
+}

@@ -1,0 +1,48 @@
+.root {
+	margin: 2px !important;
+	padding: 3px !important;
+}
+.paper {
+	/* margin: 30px !important; */
+	padding: 12px !important;
+	justify-content: space-between;
+	border-radius: 15px !important;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
+}
+.form {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	border-radius: 10px !important;
+}
+.fileInput {
+	width: 97%;
+	margin: 10px 0;
+	font-family: "Montserrat", sans-serif !important;
+}
+
+::file-selector-button {
+	background-color: black;
+	font-family: "Montserrat", sans-serif !important;
+	padding: 5px !important;
+	color: white;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.buttonSubmit {
+	margin-bottom: 10px;
+	background-color: black !important;
+	font-family: "Montserrat", sans-serif !important;
+}
+.buttonClear {
+	margin: 5px !important;
+	background-color: red !important;
+	font-family: "Montserrat", sans-serif !important;
+}
+
+.formHeading {
+	color: black;
+	font-family: "Montserrat", sans-serif !important;
+	font-weight: 500 !important;
+}
