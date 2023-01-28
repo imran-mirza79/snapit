@@ -10,7 +10,7 @@ import PostContext from "../src/context/PostContext";
 import IdContext from "./context/IdContext";
 import DeleteContext from "./context/DeletedPostContext";
 import Error from "./components/Error/Error";
-import NavBar from "./components/AppBar/NavBar";
+import NavBar from "./components/NavBar/NavBar";
 
 const App = () => {
 	const { setPosts, posts } = useContext(PostContext);
