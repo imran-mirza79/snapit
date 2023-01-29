@@ -11,5 +11,5 @@ Snap It is a MERN Stack application that allows authenticated users to upload th
 
 #SnapIt!
 
-![plot](./client/src/images/readme4.png)
-![plot](./client/src/images/readme1.png)
+![snapit](./client/src/images/readme4.png)
+![snapit](./client/src/images/readme1.png)
