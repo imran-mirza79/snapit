@@ -4,9 +4,7 @@ import { readdirSync } from "fs";
 var nodeModules = {};
 
 
-
-
-fs.readdirSync(path.resolve(__dirname, 'node_modules'))
+readdirSync(path.resolve(__dirname, 'node_modules'))
     .filter(function(x) {
         return ['.bin'].indexOf(x) === -1;
     })
