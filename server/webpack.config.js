@@ -1,4 +1,5 @@
-import { resolve } from "path";
+import path, { resolve } from "path";
+import { fileURLToPath } from "url";
 import { readdirSync } from "fs";
 var nodeModules = {};
 
