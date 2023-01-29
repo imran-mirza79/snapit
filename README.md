@@ -1,7 +1,8 @@
 # snapit
+
 Snap It is a MERN Stack application that allows authenticated users to upload their memorable moments on the web. The aim is to use Google Voice assistant commands to run the application with voice commands.
 
-# TECH STACK 
+# TECH STACK
 
 1. React.JS + Material UI for frontend
 2. Node.JS for backend
@@ -10,5 +11,5 @@ Snap It is a MERN Stack application that allows authenticated users to upload th
 
 #SnapIt!
 
-![SnapIt](./client/src/images/readme4.png?raw=true "Snapit")
-![SnapIt](./client/src/images/readme1.png?raw=true "Snapit")
+![plot](./client/src/images/readme4.png)
+![plot](./client/src/images/readme1.png)
