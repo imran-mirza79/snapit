@@ -11,7 +11,7 @@ import MiniCssExtractPlugin, {
 } from "mini-css-extract-plugin";
 
 // OTHER ! TODO: const devMode = process.env.NODE_ENV !== 'production';...
-var mode = "production";
+var mode1 = "production";
 /**
  * ! Fix for:
  * ! [webpack v5] Error: Universal Chunk Loading is not implemented yet #11660
@@ -22,10 +22,10 @@ var mode = "production";
 var target = "web";
 
 if (process.env.NODE_ENV === "production") {
-	mode = "production";
+	mode1 = "production";
 }
 
-export const mode = mode;
+export const mode = mode1;
 export const entry = {
 	index: SRC_DIR + "/index.js",
 };
