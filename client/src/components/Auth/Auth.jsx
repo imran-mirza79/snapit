@@ -25,8 +25,8 @@ const initialState = {
 };
 
 const Auth = () => {
-	const [isSignUp, setSignUp] = useState(false);
-	const [showPassword, setShowPassword] = useState(false);
+	const [ isSignUp, setSignUp ] = useState(false);
+	const [ showPassword, setShowPassword ] = useState(false);
 	const [ userData, setUserData ] = useState(initialState);
 	const navigate = useNavigate();
 	const { setUser } = useContext(UserContext);
@@ -49,11 +49,11 @@ const Auth = () => {
 				JSON.stringify({ data: response.result, token: response.token })
 			);
 		}
-		
+
 	};
 
 	const handleChange = (e) => {
-		setUserData({ ...userData, [e.target.name]: e.target.value });
+		setUserData({ ...userData, [ e.target.name ]: e.target.value });
 	};
 
 	const handleShowPassword = (e) => {

@@ -1,7 +1,8 @@
 import React, { useContext, useEffect } from "react";
-import { Grow, Container, Grid } from "@mui/material";
+import { Grow, Container, Grid, Paper } from "@mui/material";
 import Posts from "../Posts/Posts";
 import Form from "../Form/Form";
+import Paginate from "../Paginate";
 import IdContext from "../../context/IdContext";
 import DeleteContext from "../../context/DeletedPostContext";
 import PostContext from "../../context/PostContext";
@@ -37,7 +38,10 @@ const Home = () => {
 					</Grid>
 
 					<Grid item xs={12} sm={4} className="PostFormContainer">
-						<Form />
+							<Form />
+							<Paper className="pagination" elevation={6}>
+								<Paginate/>
+							</Paper>
 					</Grid>
 				</Grid>
 			</Container>
