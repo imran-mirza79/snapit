@@ -7,3 +7,8 @@ Snap It is a MERN Stack application that allows authenticated users to upload th
 2. Node.JS for backend
 3. MongoDB as DataBase
 4. JSON Web token for user authentication and session management
+
+#SnapIt!
+
+![SnapIt](./client/src/images/readme4.png?raw=true "Snapit")
+![SnapIt](./client/src/images/readme1.png?raw=true "Snapit")

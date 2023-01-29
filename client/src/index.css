@@ -4,9 +4,10 @@
 } */
 
 body{
-	background-color: rgb(245, 0, 87);
+	/* background-color: rgb(245, 0, 87); */
 	/* background-color: #808080; */
 	/* background-color: whitesmoke; */
+	background-color: rgb(90, 172, 243);
 }
 
 *, html, body{
