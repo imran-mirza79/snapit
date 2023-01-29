@@ -1,71 +1,52 @@
-// PATH
+import webpack from "webpack";
 import { resolve } from "path";
-const SRC_DIR = resolve(__dirname, "./src");
-const DIST_DIR = resolve(__dirname, "./dist");
+import { readdirSync } from "fs";
+var nodeModules = {};
 
-// PLUGIN
-import HtmlWebpackPlugin from "html-webpack-plugin";
-import { CleanWebpackPlugin } from "clean-webpack-plugin";
-import MiniCssExtractPlugin, {
-	loader as _loader,
-} from "mini-css-extract-plugin";
+// note the path.resolve(__dirname, ...) part
+// without it, eslint-import-resolver-webpack fails
+// since eslint might be invoked with different cwd
+readdirSync(resolve(__dirname, "node_modules"))
+	.filter((x) => [".bin"].indexOf(x) === -1)
+	.forEach((mod) => {
+		nodeModules[mod] = `commonjs ${mod}`;
+	});
 
-// OTHER ! TODO: const devMode = process.env.NODE_ENV !== 'production';...
-var mode1 = "production";
-/**
- * ! Fix for:
- * ! [webpack v5] Error: Universal Chunk Loading is not implemented yet #11660
- * ! https://github.com/webpack/webpack/issues/11660
- * ! chunkLoading: false,
- * ! wasmLoading: false,
- */
-var target1 = "web";
+// es5 style alternative
+// fs.readdirSync(path.resolve(__dirname, 'node_modules'))
+//     .filter(function(x) {
+//         return ['.bin'].indexOf(x) === -1;
+//     })
+//     .forEach(function(mod) {
+//         nodeModules[mod] = 'commonjs ' + mod;
+//     });
 
-if (process.env.NODE_ENV === "production") {
-	mode1 = "production";
-}
-
-export const mode = mode1;
-export const entry = {
-	index: SRC_DIR + "/index.js",
-};
+export const name = "server";
+export const target = "node";
+export const entry = "./index.js";
 export const output = {
-	path: DIST_DIR,
-	//assetModuleFilename: "images/[name][ext][query]",
-	chunkLoading: false,
-	wasmLoading: false,
+	path: "./bin/",
+	publicPath: "bin/",
+	filename: "serverEntryPoint.js",
 };
+export const externals = nodeModules;
 export const module = {
-	rules: [
+	loaders: [
 		{
 			test: /\.js$/,
-			exclude: /node_modules/,
-			use: {
-				loader: "babel-loader",
-			},
+
+			loaders: [
+				// 'imports?document=this',
+				// 'react-hot',
+				"babel-loader",
+				//,'jsx-loader'
+			],
 		},
-		{
-			// For pure CSS - /\.css$/i,
-			// For Sass/SCSS - /\.((c|sa|sc)ss)$/i,
-			// For Less - /\.((c|le)ss)$/i,
-			test: /\.((c|sa|sc)ss)$/i,
-			use: [_loader, "css-loader", "postcss-loader", "sass-loader"],
-		},
+		{ test: /\.json$/, loader: "json-loader" },
 	],
 };
-export const devtool = "source-map";
-export const target = target1;
-export const devServer = {
-	contentBase: "./dist",
-	hot: true,
-};
 export const plugins = [
-	// Automatically remove all unused webpack assets on rebuild
-	// default: true
-	new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
-	/*new CleanWebpackPlugin(),*/
-	new MiniCssExtractPlugin(),
-	new HtmlWebpackPlugin({
-		template: SRC_DIR + "/index.html",
-	}),
+	// new webpack.NormalModuleReplacementPlugin("^(react-bootstrap-modal)$", "^(react)$")
+	// new webpack.IgnorePlugin(new RegExp("^(react-bootstrap-modal)$"))
+	// new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
 ];
