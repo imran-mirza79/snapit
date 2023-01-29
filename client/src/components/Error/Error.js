@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import NavBar from '../NavBar/NavBar'
 import "./styles.css";
 const Error = () => {
     const [ loading, setLoading ] = useState("loading");
@@ -10,8 +9,6 @@ const Error = () => {
         }, 1000)
     }, [loading])
 	return (
-		<>
-			<NavBar/>
 			<div className={loading}>
 				<h1>500</h1>
 				<h2>
@@ -35,7 +32,6 @@ const Error = () => {
 					</div>
 				</div>
 			</div>
-		</>
 	);
 };
 

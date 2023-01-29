@@ -8,7 +8,6 @@ import { createPost, updatePost } from "../../actions/posts";
 
 const Form = () => {
 	const [postData, setPostData] = useState({
-		creator: "",
 		title: "",
 		message: "",
 		tags: "",
@@ -17,6 +16,7 @@ const Form = () => {
 	const { currentId, setCurrentId } = useContext(IdContext);
 	const { posts } = useContext(PostContext);
 	const post = currentId ? posts.find((p) => p._id === currentId) : null;
+	const user = JSON.parse(localStorage.getItem('user'));
 
 	useEffect(() => {
 		if (post) setPostData(post);
@@ -25,7 +25,6 @@ const Form = () => {
 	const clear = (e) => {
 		setCurrentId(null);
 		setPostData({
-			creator: "",
 			title: "",
 			message: "",
 			tags: "",
@@ -35,12 +34,23 @@ const Form = () => {
 	const handleSubmit = (e) => {
 		// e.preventDefault();
 		if (currentId) {
-			updatePost(currentId, postData);
+			updatePost(currentId, { ...postData, name: user?.data?.name });
 		} else {
-			createPost(postData);
+			createPost({...postData, name: user?.data?.name});
 		}
 		clear();
 	};
+	
+	if (!user?.data?.name) {
+		return (
+			<Paper className='paper'>
+				<Typography variant='h6' align='center'>
+					Please Sign In to make your own memories and like other memories
+				</Typography>
+			</Paper>
+	)
+}
+
 
 	return (
 		<Paper className="paper">
@@ -53,17 +63,6 @@ const Form = () => {
 				<Typography variant="h6" className="formHeading">
 					{currentId ? "Editing" : "Creating"} a Memory
 				</Typography>
-				<TextField
-					className="root"
-					name="creator"
-					variant="outlined"
-					label="Creator"
-					fullWidth
-					value={postData.creator}
-					onChange={(e) =>
-						setPostData({ ...postData, creator: e.target.value })
-					}
-				/>
 
 				<TextField
 					className="root"
@@ -83,6 +82,8 @@ const Form = () => {
 					variant="outlined"
 					label="Message"
 					fullWidth
+					multiline
+					rows={3}
 					value={postData.message}
 					onChange={(e) =>
 						setPostData({ ...postData, message: e.target.value })
@@ -97,7 +98,10 @@ const Form = () => {
 					fullWidth
 					value={postData.tags}
 					onChange={(e) =>
-						setPostData({ ...postData, tags: e.target.value.split(',') })
+						setPostData({
+							...postData,
+							tags: e.target.value.split(","),
+						})
 					}
 				/>
 				<div className="fileInput">

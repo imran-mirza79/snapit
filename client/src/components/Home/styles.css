@@ -1,0 +1,9 @@
+.PostFormContainer {
+	margin-bottom: 20px !important;
+}
+
+@media (max-width: 600px) {
+	.reverseFlex {
+		flex-direction: column-reverse !important;
+	}
+}

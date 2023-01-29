@@ -4,5 +4,11 @@
 } */
 
 body{
-	background-color: rgb(135, 187, 233);
+	background-color: rgb(245, 0, 87);
+	/* background-color: #808080; */
+	/* background-color: whitesmoke; */
+}
+
+*, html, body{
+	font-family: "Montserrat", sans-serif !important;
 }

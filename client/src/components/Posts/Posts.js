@@ -6,7 +6,7 @@ import Post from "./Post/Post";
 
 const Posts = () => {
 	const { posts } = useContext(PostContext);
-	if (posts && posts.length === 0)
+	if (posts && posts.length===0)
 		return <Typography variant="h3">No Memories Available</Typography>;
 	return posts && !posts.length ? (
 		<CircularProgress />
