@@ -1,10 +1,10 @@
-import webpack from "webpack";
 import { resolve } from "path";
 import { readdirSync } from "fs";
 var nodeModules = {};
 
-
-readdirSync(path.resolve(__dirname, 'node_modules'))
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+readdirSync(resolve(__dirname, 'node_modules'))
     .filter(function(x) {
         return ['.bin'].indexOf(x) === -1;
     })
@@ -37,7 +37,5 @@ export const module = {
 	],
 };
 export const plugins = [
-	// new webpack.NormalModuleReplacementPlugin("^(react-bootstrap-modal)$", "^(react)$")
-	// new webpack.IgnorePlugin(new RegExp("^(react-bootstrap-modal)$"))
-	// new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
+	
 ];
