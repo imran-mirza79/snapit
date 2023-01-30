@@ -1,10 +1,10 @@
 import * as api from '../api';
 
-export const getPosts = async () => {
+export const getPosts = async (page) => {
     try {
-        const { data: posts } = await api.fetchPosts();
-        return posts;
-
+       
+        const { data: state } = await api.fetchPosts(page);
+        return {posts: state.data, currentPage: state.currentPage, totalPages: state.totalPages}
     } catch (error) {
         console.log(error.message);
     }

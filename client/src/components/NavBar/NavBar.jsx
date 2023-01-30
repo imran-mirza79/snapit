@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from "react";
+import React, { useContext, useEffect } from "react";
 import {
 	AppBar,
 	Avatar,
@@ -6,10 +6,10 @@ import {
 	Toolbar,
 	Typography,
 } from "@mui/material";
-import {NavLink, Link, useNavigate} from 'react-router-dom'
+import { NavLink, Link, useNavigate } from 'react-router-dom';
 import decode from 'jwt-decode';
 import snap from "../../images/snap.png";
-import logo from '../../images/memories-Logo.png'
+import logo from '../../images/memories-Logo.png';
 import UserContext from "../../context/UserContext";
 import "./styles.css";
 
@@ -19,13 +19,14 @@ const NavBar = () => {
 
 	const user = JSON.parse(localStorage.getItem('user'));
 
+
 	const logout = (e) => {
 		e.preventDefault();
 		setUser(null);
 		localStorage.clear();
 		navigate('/');
-	}
-	
+	};
+
 	useEffect(() => {
 		const token = user?.token;
 
@@ -39,26 +40,26 @@ const NavBar = () => {
 		}
 
 		setUser(JSON.parse(localStorage.getItem('user')));
-	}, [navigate, setUser, user?.token])
+	}, [ navigate, setUser, user?.token ]);
 
 	return (
-		<AppBar className ='appBar'  position = "static" color = "inherit" >
-      <Link to="/posts" className='brandContainer'>
-        <img component={Link} to="/" src={snap} alt="icon" height="45px" className="image"/>
-        <img className={'image'} src={logo} alt="icon" height="40px" />
-      </Link>
-      <Toolbar className={'toolbar'}>
-        {user?.result ? (
-          <div className={'profile'}>
-            <Avatar className={'purple'} alt={user?.result.name} src={user?.result.imageUrl}>{user?.result.name.charAt(0)}</Avatar>
-            <Typography className={'userName'} variant="h6">{user?.result.name}</Typography>
-            <Button variant="contained" className={'logout'} color="secondary" onClick={logout}>Logout</Button>
-          </div>
-        ) : (
-          <Button component={Link} to="/auth" variant="contained" color="primary" className='loginButton'>Sign In</Button>
-        )}
-      </Toolbar>
-    </AppBar >
+		<AppBar className='appBar' position="static" color="inherit" >
+			<Link to="/posts" className='brandContainer'>
+				<img component={Link} to="/" src={snap} alt="icon" height="45px" className="image" />
+				<img className={'image'} src={logo} alt="icon" height="40px" />
+			</Link>
+			<Toolbar className={'toolbar'}>
+				{user?.data ? (
+					<div className={'profile'}>
+						<Avatar className='profileAvatar' alt={user?.data.name} src={user?.data?.imageUrl}>{user?.data.name.charAt(0)}</Avatar>
+						<Typography className={'userName'} variant="h6">{user?.data.name}</Typography>
+						<Button variant="contained" className='logoutButton'  onClick={logout}>Logout</Button>
+					</div>
+				) : (
+					<Button component={Link} to="/auth" variant="contained" color="primary" className='loginButton'>Sign In</Button>
+				)}
+			</Toolbar>
+		</AppBar >
 	);
 };
 

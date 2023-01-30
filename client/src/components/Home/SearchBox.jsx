@@ -1,16 +1,19 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { AppBar, TextField, Button } from '@mui/material';
 import { MuiChipsInput } from 'mui-chips-input';
 import { getPostBySearch } from '../../actions/posts';
-
-import { useLocation, useNavigate } from 'react-router-dom';
+import PostContext from '../../context/PostContext'
+import LoadingContext  from '../../context/LoadingContext'
+import Loading from '../Loading/Loading'
+import {  useNavigate } from 'react-router-dom';
 
 
 
 const SearchBox = ({search, setTags, tags, setSearch}) => {
     const navigate = useNavigate();
     
-
+    const { setPosts } = useContext(PostContext);
+    const { loadingState, setLoadingState } = useContext(LoadingContext);
 
     const handleKeyPress = (e) => {
         if (e.key === "Enter") {
@@ -21,12 +24,15 @@ const SearchBox = ({search, setTags, tags, setSearch}) => {
 
     const handleAdd = (tag) => setTags(tag);
 
-    const searchPost = (e) => {
+    const searchPost = async (e) => {
 
-        if (search.trim()) {
-            getPostBySearch({ search: search, tags: tags.join(',') }).then((data) => {
-                console.log(data);
-            });
+        if (search.trim() || tags) {
+            setLoadingState({ isLoading: true, message: "Searching..." });
+            <Loading loading={loadingState.isLoading} message={loadingState.message}/>
+            const  response = await getPostBySearch({ search: search, tags: tags.join(',') })
+            navigate(`/posts/search?searchQuery=${ search || 'none' }&tags=${ tags }`)
+            setPosts(response);
+            setLoadingState({ isLoading: false, message: null });
         } else {
             navigate('/posts');
         }

@@ -22,12 +22,11 @@
 .fileInput {
 	width: 97%;
 	margin: 10px 0;
-	font-family: "Montserrat", sans-serif !important;
+	height: 50%;
 }
 
 ::file-selector-button {
 	background-color: black;
-	font-family: "Montserrat", sans-serif !important;
 	padding: 5px !important;
 	color: white;
 	border-radius: 5px;
@@ -37,17 +36,14 @@
 .buttonSubmit {
 	margin-bottom: 10px;
 	background-color: black !important;
-	font-family: "Montserrat", sans-serif !important;
 }
 
 .buttonClear {
 	margin: 5px !important;
 	background-color: red !important;
-	font-family: "Montserrat", sans-serif !important;
 }
 
 .formHeading {
 	color: black;
-	font-family: "Montserrat", sans-serif !important;
 	font-weight: 500 !important;
 }
