@@ -1,29 +1,35 @@
 .paper {
-	margin-top: 8px;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	padding: 2px;
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 15px !important;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
+  padding: 12px;
 }
+
 /* root{
     & .MuiTextField-root: {
       margin: theme.spacing(1);
     };
   } */
 .avatar {
-	margin: 1px;
-	background-color: black !important;
+  margin: 1px;
+  background-color: black !important;
 }
+
 .form {
-	width: 100% !important;
-	margin-top: 3px !important;
+  width: 100% !important;
+  margin-top: 3px !important;
 }
+
 .submit {
-	/* margin: 3px 0px 2px; */
+  /* margin: 3px 0px 2px; */
   margin: 25px !important;
   background-color: black !important;
   font-weight: 600 !important;
 }
+
 .googleButton {
   background-color: #4285F4 !important;
   color: white !important;
@@ -31,7 +37,8 @@
   margin: 20px !important;
   padding: 5px !important;
 }
+
 .lockIcon {
-	/* background-color: rgb(245, 0, 87) !important; */
-	color: white !important;
+  /* background-color: rgb(245, 0, 87) !important; */
+  color: white !important;
 }

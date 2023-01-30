@@ -43,7 +43,7 @@ const Form = () => {
 	
 	if (!user?.data?.name) {
 		return (
-			<Paper className='paper'>
+			<Paper className='formPaper'>
 				<Typography variant='h6' align='center'>
 					Please Sign In to make your own memories and like other memories
 				</Typography>
@@ -53,7 +53,7 @@ const Form = () => {
 
 
 	return (
-		<Paper className="paper">
+		<Paper className="formPaper" elevation={6}>
 			<form
 				autoComplete="off"
 				noValidate

@@ -2,19 +2,23 @@
 	margin: 2px !important;
 	padding: 3px !important;
 }
-.paper {
-	/* margin: 30px !important; */
-	padding: 12px !important;
-	justify-content: space-between;
+
+.formPaper {
+	padding: 16px !important;
 	border-radius: 15px !important;
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
+	/* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important; */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
+
 .form {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
 	border-radius: 10px !important;
 }
+
 .fileInput {
 	width: 97%;
 	margin: 10px 0;
@@ -35,6 +39,7 @@
 	background-color: black !important;
 	font-family: "Montserrat", sans-serif !important;
 }
+
 .buttonClear {
 	margin: 5px !important;
 	background-color: red !important;

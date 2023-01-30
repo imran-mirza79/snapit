@@ -4,9 +4,18 @@ export const getPosts = async () => {
     try {
         const { data: posts } = await api.fetchPosts();
         return posts;
-       
+
     } catch (error) {
         console.log(error.message);
+    }
+};
+
+export const getPostBySearch = async (searchQuery) => {
+    try {
+        const {data:{data}} = await api.fetchPostsBySearch(searchQuery);
+        return data;
+    } catch (error) {
+        console.log(error);
     }
 };
 
@@ -15,7 +24,7 @@ export const createPost = async (post) => {
         const response = await api.createPost(post);
         console.log(response.data);
         return response.data;
-        
+
     } catch (error) {
         console.log(error.message);
     }
@@ -46,4 +55,4 @@ export const likePost = async (id) => {
     } catch (error) {
         console.log(error);
     }
-}
+};

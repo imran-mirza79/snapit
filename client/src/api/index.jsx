@@ -9,23 +9,23 @@ const GOOGLE_API_USER_DATA_URL =
 
 API.interceptors.request.use((req) => {
 	if (localStorage.getItem("user")) {
-		req.headers.Authorization = `Bearer ${
-			JSON.parse(localStorage.getItem('user')).token
-		}`;
+		req.headers.Authorization = `Bearer ${ JSON.parse(localStorage.getItem('user')).token
+			}`;
 	}
 	return req;
 });
 
 // USER CALLS
 export const getUserData = (access_token) =>
-	axios.get(`${GOOGLE_API_USER_DATA_URL}${access_token}`);
+	axios.get(`${ GOOGLE_API_USER_DATA_URL }${ access_token }`);
 
 // MESSSAGE CALLS
 export const fetchPosts = () => API.get("/posts");
+export const fetchPostsBySearch = (searchQuery) => API.get(`/posts/search?searchQuery=${ searchQuery.search || 'none' }&tags=${ searchQuery.tags }`);
 export const createPost = (newPost) => API.post("/posts", newPost);
-export const updatePost = (postId, post) => API.patch(`/posts/${postId}`, post);
-export const deletePost = (id) => API.delete(`/posts/${id}`);
-export const likePost = (id) => API.patch(`/posts/${id}/likePost`);
+export const updatePost = (postId, post) => API.patch(`/posts/${ postId }`, post);
+export const deletePost = (id) => API.delete(`/posts/${ id }`);
+export const likePost = (id) => API.patch(`/posts/${ id }/likePost`);
 
 // AUTH CALLS
 export const signUp = (data) => API.post(`/users/signup`, data);
