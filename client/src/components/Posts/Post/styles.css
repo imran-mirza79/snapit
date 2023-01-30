@@ -1,5 +1,4 @@
 .media {
-    height: 0;
     padding-top: 56.25%;
     background-color: rgba(0, 0, 0, 0.5);
     background-blend-mode: darken;
@@ -41,10 +40,6 @@
     margin-top: 10px;
 }
 
-.title {
-    margin-top: 0px;
-    padding: 0 16px;
-}
 
 .cardActions {
     padding: 0 16px 8px 16px;
@@ -68,3 +63,4 @@ button[disabled] {
     /* color: #cccccc; */
     color: #666666 !important;
 }
+

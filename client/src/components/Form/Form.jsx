@@ -1,9 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import { TextField, Button, Typography, Paper } from "@mui/material";
+import Loading from '../Loading/Loading'
 import "./styles.css";
 import FileBase from "react-file-base64";
 import IdContext from "../../context/IdContext";
 import PostContext from "../../context/PostContext";
+import LoadingContext from '../../context/LoadingContext'
 import { createPost, updatePost } from "../../actions/posts";
 
 const Form = () => {
@@ -15,6 +17,7 @@ const Form = () => {
 	});
 	const { currentId, setCurrentId } = useContext(IdContext);
 	const { posts } = useContext(PostContext);
+	const { loadingState, setLoadingState } = useContext(LoadingContext);
 	const post = currentId ? posts.find((p) => p._id === currentId) : null;
 	const user = JSON.parse(localStorage.getItem('user'));
 
@@ -32,11 +35,13 @@ const Form = () => {
 		});
 	};
 	const handleSubmit = (e) => {
-		// e.preventDefault();
 		if (currentId) {
 			updatePost(currentId, { ...postData, name: user?.data?.name });
 		} else {
-			createPost({...postData, name: user?.data?.name});
+			setLoadingState({ isLoading: true, message: "Creating Post" });
+			<Loading loading={loadingState.isLoading} message={loadingState.message}/>
+			createPost({ ...postData, name: user?.data?.name });
+			setLoadingState({ isLoading: false, message:null });
 		}
 		clear();
 	};

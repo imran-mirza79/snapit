@@ -13,19 +13,20 @@ import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbUpAltOutlinedIcon from "@mui/icons-material/ThumbUpAltOutlined";
 import DeleteIcon from "@mui/icons-material/Delete";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import road from "../../../images/road.jpg";
 import moment from "moment";
 import IdContext from "../../../context/IdContext";
 import PostContext from "../../../context/PostContext";
 import { deletePost, likePost } from "../../../actions/posts";
 import DeleteContext from "../../../context/DeletedPostContext";
+import { useNavigate } from 'react-router-dom';
 const Post = ({ post }) => {
 
     const { setCurrentId } = useContext(IdContext);
     const { setId } = useContext(DeleteContext);
     const { setPosts, posts, setLikeCount } = useContext(PostContext);
     const user = JSON.parse(localStorage.getItem('user'));
-
+    const navigate = useNavigate();
+    
     const handleDelete = (e) => {
         e.preventDefault();
         deletePost(post._id).then((id) => {
@@ -40,9 +41,11 @@ const Post = ({ post }) => {
     const handleLike = (e) => {
         // e.preventDefault();
         likePost(post._id).then(() => {
-            setLikeCount(() => post?.likes.length);
+            setLikeCount((prev) => prev+1);
         });
     };
+
+    const openPost = () => navigate(`/posts/${post._id}`)
 
 
     const Likes = () => {
@@ -76,15 +79,32 @@ const Post = ({ post }) => {
 
 
     return (
-        <Card className='card'>
+        <Card className='card' raised elevation={6}>
+            <CardActionArea onClick={openPost}>
                 <CardMedia
-                    component="img"
+                    height={200}
                     alt={post.title}
-                    height="200"
-                    image={post.selectedFile || road}
+                    image={post.selectedFile || 'https://picsum.photos/id/4/5000/3333'}
                     title={post.title}
+                    className='media'
                 />
-                <div className="overlay">
+                
+
+                <div className="details">
+                    <Typography variant="body2" color="textSecondary">
+                        {post.tags.map((tag) => `#${ tag } `)}
+                    </Typography>
+                </div>
+                <CardContent>
+                    <Typography gutterBottom variant="h5" noWrap>
+                        {post.title}
+                    </Typography>
+                    <Typography variant="h5" component="p" fontSize="small">
+                        {post.message}
+                    </Typography>
+                </CardContent>
+            </CardActionArea>
+            <div className="overlay">
                     <Typography variant="h6" className="creatorName">
                         {post.name}
                     </Typography>
@@ -107,20 +127,6 @@ const Post = ({ post }) => {
                         </div>
                     )}
 
-                <div className="details">
-                    <Typography variant="body2" color="textSecondary">
-                        {post.tags.map((tag) => `#${ tag } `)}
-                    </Typography>
-                </div>
-                <CardContent>
-                    <Typography gutterBottom variant="body2" component="h2" noWrap>
-                        {post.title}
-                    </Typography>
-                    <Typography variant="h5" component="p" fontSize="small">
-                        {post.message}
-                    </Typography>
-                </CardContent>
-                
             <CardActions className="cardActions">
                 <Button
                     size="small"

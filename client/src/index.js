@@ -6,6 +6,7 @@ import { IdProvider } from "./context/IdContext";
 import { DeleteProvider } from "./context/DeletedPostContext";
 import { UserContextProvider } from "./context/UserContext";
 import "./index.css";
+import { LoadingProvider } from "./context/LoadingContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -14,7 +15,9 @@ root.render(
 		<IdProvider>
 			<DeleteProvider>
 				<PostProvider>
-					<App />
+					<LoadingProvider>
+						<App />
+					</LoadingProvider>
 				</PostProvider>
 			</DeleteProvider>
 		</IdProvider>
