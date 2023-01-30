@@ -12,7 +12,7 @@ export const getPosts = async (req, res) => {
 
 export const createPost = async (req, res) => {
 	const post = req.body;
-	const newPost = new PostMessage({...post, creator: req.userId, createdAt: new Date().toISOString()});
+	const newPost = new PostMessage({ ...post, creator: req.userId, createdAt: new Date().toISOString() });
 	try {
 		await newPost.save();
 		res.status(201).json(newPost);
@@ -50,11 +50,11 @@ export const likePost = async (req, res) => {
 	if (!mongoose.Types.ObjectId.isValid(id))
 		return res.status(404).send("No post with this id");
 	const post = await PostMessage.findById(id);
-	const index = post.likes.findIndex((id) => id===String(req.userId));
+	const index = post.likes.findIndex((id) => id === String(req.userId));
 
-	console.log(index)
+	console.log(index);
 
-	if (index===-1) {
+	if (index === -1) {
 		post.likes.push(req.userId);
 	} else {
 		post.likes = post.likes.filter((id) => id !== String(req.userId));
@@ -63,4 +63,18 @@ export const likePost = async (req, res) => {
 		new: true,
 	});
 	res.json(updatePost);
+};
+
+export const getPostBySearch = async (req, res) => {
+	const { searchQuery, tags } = req.query;
+	console.log(searchQuery, tags);
+	try {
+		const title = new RegExp(searchQuery, 'i');
+		console.log(title);
+		const post = await PostMessage.find({ $or: [ { title }, { tags: { $in: tags.split(',') } } ] });
+		res.json({ data: post });
+	} catch (error) {
+		console.log(error);
+		res.status(404).json({ message: error.message });
+	}
 };

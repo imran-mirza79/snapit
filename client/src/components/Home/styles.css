@@ -1,9 +1,39 @@
-.PostFormContainer {
-	margin-bottom: 20px !important;
-}
+ .appBarSearch {
+ 	padding: 16px !important;
+ 	border-radius: 15px !important;
+ 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
+ 	display: flex;
+ 	flex-direction: column;
+ 	align-items: center;
+ 	margin-bottom: 1rem;
+ }
 
-@media (max-width: 600px) {
-	.reverseFlex {
+ .pagination {
+ 	padding: 16px !important;
+ 	border-radius: 15px !important;
+ 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
+ 	display: flex;
+ 	flex-direction: column;
+ 	align-items: center;
+ 	margin-top: 1rem;
+ }
+
+
+
+ .gridContainer {
+	display: flex;
+ }
+
+ .gridContainer2{
+	display: flex;
+	flex-direction: column !important;
+ }
+
+ @media (max-width: 200) {
+ 	.gridContainer {
+ 		flex-direction: column-reverse !important;
+ 	}
+	.gridContainer2{
 		flex-direction: column-reverse !important;
 	}
-}
+ }

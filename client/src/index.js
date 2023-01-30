@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
-import { PostProvider } from "../src/context/PostContext";
+import { PostProvider } from "./context/PostContext";
 import { IdProvider } from "./context/IdContext";
 import { DeleteProvider } from "./context/DeletedPostContext";
 import { UserContextProvider } from "./context/UserContext";

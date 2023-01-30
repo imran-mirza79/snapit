@@ -9,6 +9,7 @@ import {
 import {NavLink, Link, useNavigate} from 'react-router-dom'
 import decode from 'jwt-decode';
 import snap from "../../images/snap.png";
+import logo from '../../images/memories-Logo.png'
 import UserContext from "../../context/UserContext";
 import "./styles.css";
 
@@ -41,41 +42,23 @@ const NavBar = () => {
 	}, [navigate, setUser, user?.token])
 
 	return (
-		<AppBar className="appBar" position="static" color="inherit">
-			<Link to="/">
-				<img className="image" src={snap} alt="memories" height="50" />
-			</Link>
-			<Toolbar className="toolbar">
-				{user ? (
-					<div className="profile">
-						<Avatar
-							className="profileAvatar"
-							alt={user?.data?.name}
-							src={user?.data?.picture}
-						>
-							{user?.data?.name.charAt(0)}
-						</Avatar>
-						<Typography className="userName" variant="h6">
-							{user?.data?.name}
-						</Typography>
-						<Button
-							variant="contained"
-							className="logoutButton"
-							color="primary"
-							onClick={logout}
-						>
-							LogOut
-						</Button>
-					</div>
-				) : (
-					<NavLink to="/auth">
-						<Button className="loginButton" variant="contained">
-							SignIn
-						</Button>
-					</NavLink>
-				)}
-			</Toolbar>
-		</AppBar>
+		<AppBar className ='appBar'  position = "static" color = "inherit" >
+      <Link to="/posts" className='brandContainer'>
+        <img component={Link} to="/" src={snap} alt="icon" height="45px" className="image"/>
+        <img className={'image'} src={logo} alt="icon" height="40px" />
+      </Link>
+      <Toolbar className={'toolbar'}>
+        {user?.result ? (
+          <div className={'profile'}>
+            <Avatar className={'purple'} alt={user?.result.name} src={user?.result.imageUrl}>{user?.result.name.charAt(0)}</Avatar>
+            <Typography className={'userName'} variant="h6">{user?.result.name}</Typography>
+            <Button variant="contained" className={'logout'} color="secondary" onClick={logout}>Logout</Button>
+          </div>
+        ) : (
+          <Button component={Link} to="/auth" variant="contained" color="primary" className='loginButton'>Sign In</Button>
+        )}
+      </Toolbar>
+    </AppBar >
 	);
 };
 
