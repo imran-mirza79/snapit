@@ -23,6 +23,7 @@ mongoose
 		useUnifiedTopology: true,
 	})
 	.then(() => {
+	console.log(`Server started on PORT: ${PORT}`);
 		app.listen(PORT);
 	})
 
